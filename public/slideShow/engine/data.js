@@ -4,12 +4,12 @@ const optionData = {
 	cssData:{
 		slideShowContainer:{
 			width: "100%",
-			"max-width": "1000px",
+			maxWidth: "1000px",
 			height: "100vh"
 		},
 		arrow:{
 			top: "40%",
-			"z-index": "100"
+			zIndex: "100"
 		},
 		slideShowImage:{
 			height: "50vh",
@@ -17,9 +17,26 @@ const optionData = {
 			transition: "width 1s, height 1s, transform 1s, top 1s,left 1s"
 		},
 		firstImage:{
-			"z-index": "50",
+			zIndex: "50",
 			height: "100vh",
 			width: "100%"
+		}
+	},
+	mediaQueries:{
+		imgContainer:{
+			height: "80vh"
+		},	
+
+		slideShowContainer:{
+			height: "80vh"
+		},
+
+		slideShowImage:{
+			height: "40vh"
+		},
+
+		firstImage:{
+			height: "80vh"
 		}
 	},
 	slideShowData:{

@@ -48,7 +48,7 @@ SlideShow.prototype.handlePositionResize = function(){
 		setTimeout(function(){
 			
 			this.initImagePositions();
-			console.log("done")
+			//console.log("done")
 		}.bind(this),1100);
 	}
 	else if (this.parentWidth >= this.maxWidth){
@@ -95,7 +95,7 @@ SlideShow.prototype.initImagePositions = function(){
 		
 		//let imgHeight = this.slideShowImages[i].height;
 		//let imgWidth = this.slideShowImages[i].width;
-		console.log(this.slideShowImages[i],i * activeImageWidth);
+		//console.log(this.slideShowImages[i],i * activeImageWidth);
 		
 		if(!this.slideShowImages[i].classList.contains("firstImage")){
 			this.slideShowImages[i].style.transform = "translateX(" + activeImageWidth + "px)";
@@ -122,7 +122,7 @@ SlideShow.prototype.centerImage = function(center){
 		setTimeout(function(){
 			this.slideShowImages[this.activeImageIndex].style.top = center.top + "px";
 			this.slideShowImages[this.activeImageIndex].style.left = center.left +"px";
-			console.log("center image");
+			//console.log("center image");
 			
 
 			resolve();
