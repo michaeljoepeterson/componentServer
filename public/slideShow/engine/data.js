@@ -39,17 +39,13 @@ const optionData = {
 			height: "80vh"
 		}
 	},
-	slideShowData:{
-		//add image links here
+
+	htmlData:{
 		images:[
 			"images/img1.JPG",
 			"images/img2.JPG",
 			"images/img3.JPG",
-			"images/img1.JPG",
-			"images/img3.JPG"
+			"images/img1.JPG"
 		]
-	},
-	htmlData:{
-
 	}
 };
