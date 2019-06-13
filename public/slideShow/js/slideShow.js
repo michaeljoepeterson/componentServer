@@ -1,4 +1,5 @@
-function SlideShow(arrowLeft,arrowRight,slideShowContainerID,parentDiv,imageClass,maxWidth){
+function SlideShow(arrowLeft,arrowRight,slideShowContainerID,parentDiv,imageClass,options){
+	this.options = options;
 	this.positionCalculating = false;
 	this.leftArrow = document.getElementById(arrowLeft);
 	this.rightArrow = document.getElementById(arrowRight);
@@ -12,7 +13,8 @@ function SlideShow(arrowLeft,arrowRight,slideShowContainerID,parentDiv,imageClas
 	this.parentWidth = this.parent.scrollWidth;
 	this.currentImageWidth;
 	this.currentImageHeight;
-	this.maxWidth = maxWidth;
+	this.maxWidth = options.jsData.maxWidth;
+	this.moveTime = options.jsData.imageMoveTime
 	//console.log(this.slideShowWidth);
 	if(this.parentWidth > this.slideShowWidth){
 		this.slideShowContainer.style.marginLeft = this.centerMargin();
@@ -45,11 +47,12 @@ SlideShow.prototype.handlePositionResize = function(){
 	if(this.parentWidth < this.maxWidth && !this.positionCalculating){
 		this.slideShowWidth = this.parentWidth;
 		this.positionCalculating = true;
+		//need to wait for animations
 		setTimeout(function(){
 			
 			this.initImagePositions();
 			//console.log("done")
-		}.bind(this),1100);
+		}.bind(this),this.moveTime);
 	}
 	else if (this.parentWidth >= this.maxWidth){
 		this.initImagePositions();
@@ -91,13 +94,25 @@ SlideShow.prototype.initImagePositions = function(){
 	let activeImageHeight = activeImageDimensions[1];
 	let center = this.getImageCenter(activeImageWidth,activeImageHeight);
 	//need to set top/left position to center /4
+	let transformRegex = /\(|\)|translateX|px/g;
 	for(let i = 0;i < this.slideShowImages.length;i++){
 		
 		//let imgHeight = this.slideShowImages[i].height;
 		//let imgWidth = this.slideShowImages[i].width;
 		//console.log(this.slideShowImages[i],i * activeImageWidth);
-		
-		if(!this.slideShowImages[i].classList.contains("firstImage")){
+		let transformValue = this.slideShowImages[i].style.transform.replace(transformRegex,"");
+		console.log(transformValue);
+		if(!this.slideShowImages[i].classList.contains("firstImage")  && transformValue > 0){
+			this.slideShowImages[i].style.transform = "translateX(" + activeImageWidth + "px)";
+			this.slideShowImages[i].style.top = center.top + "px";
+			this.slideShowImages[i].style.left = center.left +"px";
+		}
+		else if(!this.slideShowImages[i].classList.contains("firstImage")  && transformValue < 0){
+			this.slideShowImages[i].style.transform = "translateX(" + (activeImageWidth * -1) + "px)";
+			this.slideShowImages[i].style.top = center.top + "px";
+			this.slideShowImages[i].style.left = center.left +"px";
+		}
+		else if(!this.slideShowImages[i].classList.contains("firstImage")){
 			this.slideShowImages[i].style.transform = "translateX(" + activeImageWidth + "px)";
 			this.slideShowImages[i].style.top = center.top + "px";
 			this.slideShowImages[i].style.left = center.left +"px";
@@ -123,10 +138,8 @@ SlideShow.prototype.centerImage = function(center){
 			this.slideShowImages[this.activeImageIndex].style.top = center.top + "px";
 			this.slideShowImages[this.activeImageIndex].style.left = center.left +"px";
 			//console.log("center image");
-			
-
 			resolve();
-		}.bind(this),1100);
+		}.bind(this),this.moveTime);
 	});
 
 	return promise;
@@ -135,12 +148,12 @@ SlideShow.prototype.centerImage = function(center){
 SlideShow.prototype.moveImageLeft = function(){
 	let promise = new Promise((resolve,reject) =>{
 		setTimeout(function(){
-			let transformRegex = /\(|\)|translateX|px/g
+			let transformRegex = /\(|\)|translateX|px/g;
 			let currentTranslate = parseInt(this.slideShowImages[this.activeImageIndex].style.transform.replace(transformRegex,""));
 			console.log(currentTranslate,this.currentImageWidth);
 			this.slideShowImages[this.activeImageIndex].style.transform = "translateX(" + (currentTranslate - this.currentImageWidth) + "px)";
 			resolve();
-		}.bind(this),1100);
+		}.bind(this),this.moveTime);
 	});
 	
 
@@ -150,12 +163,12 @@ SlideShow.prototype.moveImageLeft = function(){
 SlideShow.prototype.moveImageRight = function(){
 	let promise = new Promise((resolve,reject) =>{
 		setTimeout(function(){
-			let transformRegex = /\(|\)|translateX|px/g
+			let transformRegex = /\(|\)|translateX|px/g;
 			let currentTranslate = parseInt(this.slideShowImages[this.activeImageIndex].style.transform.replace(transformRegex,""));
 			console.log(currentTranslate,this.currentImageWidth);
 			this.slideShowImages[this.activeImageIndex].style.transform = "translateX(" + (currentTranslate + this.currentImageWidth) + "px)";
 			resolve();
-		}.bind(this),1100);
+		}.bind(this),this.moveTime);
 	});
 	
 
@@ -168,7 +181,7 @@ SlideShow.prototype.resetPosition = function(){
 				this.slideShowImages[this.activeImageIndex].style.left = "0px";
 				this.slideShowImages[this.activeImageIndex].style.top = "0px";
 				resolve();
-			}.bind(this),1100);
+			}.bind(this),this.moveTime);
 
 		});
 
@@ -182,7 +195,7 @@ SlideShow.prototype.resetSize = function(){
 				console.log("reset size: ",this.currentImageWidth,this.currentImageHeight);
 				this.slideShowImages[this.activeImageIndex].classList.add("firstImage");
 				resolve();
-			}.bind(this),1100);
+			}.bind(this),this.moveTime);
 
 		});
 
@@ -260,7 +273,7 @@ SlideShow.prototype.rightArrowClicked = function(event) {
 };
 
 function initSlideShow(){
-	var slideshow = new SlideShow("arrowLeft","arrowRight","slideShowContainer1","parentContainer","slideShowImage",1000);
+	var slideshow = new SlideShow("arrowLeft","arrowRight","slideShowContainer1","parentContainer","slideShowImage",optionData);
 }
 
 window.onload = initSlideShow;

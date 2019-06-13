@@ -47,5 +47,9 @@ const optionData = {
 			"images/img3.JPG",
 			"images/img1.JPG"
 		]
+	},
+	jsData:{
+		imageMoveTime:1100,
+		maxWidth:1000
 	}
 };

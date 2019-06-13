@@ -8,8 +8,8 @@ function Engine(options,mediaWidth,slideShowId){
 	this.slideShowContainer = document.getElementById(slideShowId)
 	this.mediaQueries = window.matchMedia("(min-width: " + this.mediaWidth + "px");
 	this.width = window.innerWidth
-	console.log(this.slideShowStyles);
-	console.log(this.width);
+	//console.log(this.slideShowStyles);
+	//console.log(this.width);
 
 	this.initEngine();
 }
@@ -26,18 +26,19 @@ Engine.prototype.initEngine = function() {
 //changes rules if the media width is reached
 Engine.prototype.addMediaQueries = function(event) {
 	if(event.matches){
-		console.log("add media query");
+		//console.log("add media query");
 		this.initCSS(this.options.mediaQueries);
 	}
 	else{
-		console.log("remove media query");
+		//console.log("remove media query");
 		this.initCSS(this.options.cssData);
 	}
 };
 //function that will change between components
+//here it handles adding the image divs to the slideshow
 Engine.prototype.initHTML = function(){
 	let slideShowImages = []; 
-	console.log(this.slideShowContainer);
+	//console.log(this.slideShowContainer);
 	for(let i = 0;i < this.options.htmlData.images.length;i++){
 		let imageDiv = document.createElement("div");  
 		imageDiv.classList.add("imageContainer");
