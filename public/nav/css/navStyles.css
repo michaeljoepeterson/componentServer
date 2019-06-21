@@ -88,7 +88,7 @@ body{
 .mobile-items-container{
 	height: 100%;
 	width:40%;
-	position: absolute;
+	position: fixed;
 	background-color: white;
 	transition: all 500ms;
 }
@@ -148,5 +148,10 @@ body{
 
 	.mobile-items-container{
 		display: none;
+	}
+
+	.no-scroll{
+		overflow: initial;
+		background-color: rgba(0,0,0,0);
 	}
 }
