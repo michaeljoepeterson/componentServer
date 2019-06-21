@@ -1,17 +1,26 @@
-function Navbar(desktopNavId,mobileNavId){
+function Navbar(desktopNavId,mobileNavId,mobileCloseId,mobileOptionsId){
 	this.desktopNav = document.getElementById(desktopNavId);
 	this.mobileNav = document.getElementById(mobileNavId);
-
-	//this.initEventListeners();
+	this.mobileClose = document.getElementById(mobileCloseId);
+	this.mobileOptions = document.getElementById(mobileOptionsId);
+	this.mainElement = document.getElementById("main");
+	this.initEventListeners();
 	//this.checkWindowSize(window.innerWidth);
 }
 
 Navbar.prototype.initEventListeners = function() {
 
-	window.onresize = function(event) {
-		this.checkWindowSize(event.currentTarget.innerWidth);
+	this.mobileClose.addEventListener("click",function(e){
+		this.closeClicked(e);
+	}.bind(this),false);
+};
 
-	}.bind(this);
+Navbar.prototype.closeClicked = function(event) {
+	const navClose = event.currentTarget;
+	navClose.classList.toggle("change");
+	this.mobileOptions.classList.toggle("hideWidth");
+	this.mainElement.classList.toggle("no-scroll");
+
 };
 
 Navbar.prototype.checkWindowSize = function(windowWidth) {
@@ -27,7 +36,7 @@ Navbar.prototype.checkWindowSize = function(windowWidth) {
 };
 
 function initApp(){
-	var navbar = new Navbar("nav-desk","nav-mobile");
+	var navbar = new Navbar("nav-desk","nav-mobile","close-nav","mobile-options");
 }
 
 window.onload = initApp;
