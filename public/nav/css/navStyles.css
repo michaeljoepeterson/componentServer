@@ -20,6 +20,7 @@ body{
 	height: 65px;
 	border-bottom: 1px solid rgb(240,240,240);
 	transition: height 500ms;
+	display: none;
 }
 
 .nav-items{
@@ -36,7 +37,7 @@ body{
 	display: inline;
 }
 /*may need to change based on engine.js*/
-.nav-item,.nav-item-mobile > a{
+.nav-item > a,.nav-item-mobile > a{
 	text-decoration: none;
 	color: black;
 	font-size: 25px;
@@ -122,4 +123,18 @@ body{
 .no-scroll{
 	overflow: hidden;
 	background-color: rgba(0,0,0,0.5);
+}
+
+@media (min-width: 550px){
+	.nav-container{
+		display: block;
+	}
+
+	.nav-container-mobile{
+		display: none;
+	}
+
+	.mobile-items-container{
+		display: none;
+	}
 }
