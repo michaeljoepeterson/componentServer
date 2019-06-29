@@ -26,6 +26,18 @@ body{
 	transition: height 500ms;
 	display: none;
 }
+/*scroll styles */
+.nav-container-small{
+	height: 45px;
+}
+
+.nav-container-small > .nav-title{
+	font-size: 17px;
+}
+
+.nav-container-small > .nav-items > .nav-item > a{
+	font-size: 20px;
+}
 
 .nav-items{
 	list-style: none;

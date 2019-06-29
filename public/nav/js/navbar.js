@@ -4,8 +4,8 @@ function Navbar(desktopNavId,mobileNavId,mobileCloseId,mobileOptionsId){
 	this.mobileClose = document.getElementById(mobileCloseId);
 	this.mobileOptions = document.getElementById(mobileOptionsId);
 	this.mainElement = document.getElementById("main");
-	this.scrollTime = 500;
-	this.currentScrollPosition = 0;
+	this.scrollTime = 50;
+	this.currentScrollPosition = document.documentElement.scrollTop;
 
 	this.scrollAnimation = false;
 	this.scrolled = false;
@@ -27,14 +27,17 @@ Navbar.prototype.handleScroll = function() {
 
 	const currentScroll = document.documentElement.scrollTop;
 	let diff =Math.abs(currentScroll - this.currentScrollPosition);
-	console.log(document.body.scrollTop,document.documentElement.scrollTop,this.scrolled,this.scrollAnimation,diff);
+	//console.log("current scroll, currentScrollPosition ",currentScroll,this.currentScrollPosition);
+	//console.log(document.body.scrollTop,document.documentElement.scrollTop,this.scrolled,this.scrollAnimation,diff);
 	if(!this.scrolled && diff > 10){
 		if(currentScroll > this.currentScrollPosition && !this.scrollAnimation){
 			console.log("scrolled down");
 			this.scrollAnimation = true;
 			setTimeout(function(){		
-				console.log("scrolled down timeout");
-				this.desktopNav.style.height = "45px";
+				console.log("scrolled down timeout",console.dir(this.desktopNav));
+				//this.desktopNav.style.height = "45px";
+				this.desktopNav.classList.add("nav-container-small");
+				this.desktopNav.children[0].firstChild.style.width = "47px";
 				this.scrollAnimation = false;
 				this.scrolled = true;
 			
@@ -46,7 +49,8 @@ Navbar.prototype.handleScroll = function() {
 			this.scrollAnimation = true;
 			setTimeout(function(){		
 				console.log("scrolled up timeout");
-				this.desktopNav.style.height = "65px";
+				this.desktopNav.classList.remove("nav-container-small");
+				this.desktopNav.children[0].firstChild.style.width = "67px";
 				this.scrollAnimation = false;
 				this.scrolled = true;
 			}.bind(this),this.scrollTime);	
