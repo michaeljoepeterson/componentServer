@@ -20,7 +20,16 @@ Navbar.prototype.initEventListeners = function() {
 	this.mobileClose.addEventListener("click",function(e){
 		this.closeClicked(e);
 	}.bind(this),false);
+
+	this.desktopNav.addEventListener("mouseover",function(e){
+		this.hoverNav()
+	}.bind(this),false);
 };
+
+Navbar.prototype.hoverNav = function() {
+	this.desktopNav.classList.remove("nav-container-small");
+	this.desktopNav.children[0].firstChild.style.width = "67px";
+}
 
 Navbar.prototype.handleScroll = function() {
 	
