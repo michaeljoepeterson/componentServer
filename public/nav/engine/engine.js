@@ -10,7 +10,7 @@ function Engine(options,mediaWidth,componentId){
 Engine.prototype.initEngine = function() {
 	//event listener for when window hits media query size
 	this.mediaQueries.addListener(this.addMediaQueries.bind(this));
-	this.initCSS(this.options.cssData)w;
+	this.initCSS(this.options.cssData);
 	if(this.width >= this.mediaWidth){
 		this.initCSS(this.options.mediaQueries);
 	}

@@ -79,7 +79,7 @@ Navbar.prototype.closeClicked = function(event) {
 	const navClose = event.currentTarget;
 	navClose.classList.toggle("change");
 	this.mobileOptions.classList.toggle("hideWidth");
-	this.mainElement.classList.toggle("no-scroll");
+	document.body.classList.toggle("no-scroll");
 };
 
 Navbar.prototype.checkWindowSize = function(windowWidth) {
