@@ -15,7 +15,10 @@ Engine.prototype.initEngine = function() {
 	if(this.width >= this.mediaWidth){
 		this.initCSS(this.options.mediaQueries);
 	}
-	this.initHTML();
+};
+
+Engine.prototype.test = function() {
+	console.log("Test");
 };
 
 //changes rules if the media width is reached
@@ -28,12 +31,6 @@ Engine.prototype.addMediaQueries = function(event) {
 		console.log("remove media query");
 		this.initCSS(this.options.cssData);
 	}
-};
-
-Engine.prototype.initHTML = function(){
-	let slideShowImages = []; 
-	console.log("old init");
-
 };
 
 Engine.prototype.initCSS = function(data) {
