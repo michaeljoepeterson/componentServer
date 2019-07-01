@@ -31,6 +31,10 @@ Navbar.prototype.hoverNav = function() {
 	this.desktopNav.children[0].firstChild.style.width = "67px";
 }
 
+Navbar.prototype.initHTML = function() {
+	console.log("it worked");
+}
+
 Navbar.prototype.handleScroll = function() {
 	
 

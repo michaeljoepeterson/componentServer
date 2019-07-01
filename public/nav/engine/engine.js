@@ -5,6 +5,7 @@ function Engine(options,mediaWidth,componentId){
 	this.componentStyles = document.styleSheets[0].cssRules;
 	this.mediaQueries = window.matchMedia("(min-width: " + this.mediaWidth + "px");
 	this.width = window.innerWidth;
+	this.initEngine();
 } 
 
 Engine.prototype.initEngine = function() {
@@ -17,20 +18,29 @@ Engine.prototype.initEngine = function() {
 	this.initHTML();
 };
 
+//changes rules if the media width is reached
+Engine.prototype.addMediaQueries = function(event) {
+	if(event.matches){
+		console.log("add media query");
+		this.initCSS(this.options.mediaQueries);
+	}
+	else{
+		console.log("remove media query");
+		this.initCSS(this.options.cssData);
+	}
+};
+
 Engine.prototype.initHTML = function(){
 	let slideShowImages = []; 
-	//console.log(this.slideShowContainer);
-	for(let i = 0;i < this.options.htmlData.images.length;i++){
-
-	}	
+	console.log("old init");
 
 };
 
 Engine.prototype.initCSS = function(data) {
-	for(let i = 0;i < this.slideShowStyles.length;i++){
-		if(this.slideShowStyles[i].type === 1){
-			let styleName = this.slideShowStyles[i].selectorText.replace(".","");
-			let currentRule = this.slideShowStyles[i];
+	for(let i = 0;i < this.componentStyles.length;i++){
+		if(this.componentStyles[i].type === 1){
+			let styleName = this.componentStyles[i].selectorText.replace(".","");
+			let currentRule = this.componentStyles[i];
 			//console.log(styleName,this.slideShowStyles[i].type);
 			if(data[styleName]){
 				//console.log("found style",data[styleName]);
@@ -42,3 +52,5 @@ Engine.prototype.initCSS = function(data) {
 		}	
 	}
 };
+
+//let navEngineStart = new Engine(navData,navData.mediaWidth,"nav-desk");

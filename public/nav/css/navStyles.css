@@ -88,6 +88,7 @@ body{
 	height: 65px;
 	border-bottom: 1px solid rgb(240,240,240);
 	transition: height 500ms;
+	display: block;
 }
 
 .nav-items-mobile{
@@ -148,7 +149,7 @@ body{
 	overflow: hidden;
 	background-color: rgba(0,0,0,0.5);
 }
-
+/*
 @media (min-width: 550px){
 	.nav-container{
 		display: block;
@@ -167,3 +168,4 @@ body{
 		background-color: rgba(0,0,0,0);
 	}
 }
+*/
