@@ -30,9 +30,13 @@ const navData = {
 		},
 
 		"mobile-items-container":{
-			"width":"40%",
+			"width":"50%",
 			"background-color": "white",
 			"display": "block"
+		},
+		"no-scroll":{
+			"overflow": "hidden",
+			"background-color": "rgba(0,0,0,0.5)"
 		}
 
 	},
@@ -56,7 +60,13 @@ const navData = {
 	},
 
 	htmlData:{
-
+		title:"Rosie's Donuts Test",
+		navOptions:{
+			"About":"/about",
+			"Contact":"/contact",
+			"Test":"/",
+			"Test2":"ign.com"
+		}	
 	},
 	jsData:{
 

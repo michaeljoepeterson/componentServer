@@ -17,10 +17,6 @@ Engine.prototype.initEngine = function() {
 	}
 };
 
-Engine.prototype.test = function() {
-	console.log("Test");
-};
-
 //changes rules if the media width is reached
 Engine.prototype.addMediaQueries = function(event) {
 	if(event.matches){
