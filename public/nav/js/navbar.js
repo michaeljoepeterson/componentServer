@@ -83,7 +83,6 @@ Navbar.prototype.closeClicked = function(event) {
 	navClose.classList.toggle("change");
 	this.mobileOptions.classList.toggle("hideWidth");
 	document.body.classList.toggle("no-scroll");
-};
 
 function initApp(){
 	var navbar = new Navbar("nav-desk","nav-mobile","close-nav","mobile-options");
