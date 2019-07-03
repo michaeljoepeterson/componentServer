@@ -10,7 +10,6 @@ function Navbar(desktopNavId,mobileNavId,mobileCloseId,mobileOptionsId){
 	this.scrollAnimation = false;
 	this.scrolled = false;
 	this.initEventListeners();
-	//this.checkWindowSize(window.innerWidth);
 }
 
 Navbar.prototype.initEventListeners = function() {
@@ -29,6 +28,10 @@ Navbar.prototype.initEventListeners = function() {
 Navbar.prototype.hoverNav = function() {
 	this.desktopNav.classList.remove("nav-container-small");
 	this.desktopNav.children[0].firstChild.style.width = "67px";
+}
+
+Navbar.prototype.initHTML = function() {
+	console.log("it worked");
 }
 
 Navbar.prototype.handleScroll = function() {
@@ -80,19 +83,6 @@ Navbar.prototype.closeClicked = function(event) {
 	navClose.classList.toggle("change");
 	this.mobileOptions.classList.toggle("hideWidth");
 	document.body.classList.toggle("no-scroll");
-};
-
-Navbar.prototype.checkWindowSize = function(windowWidth) {
-	console.log(this.desktopNav,this.mobileNav);
-	if(windowWidth <= 550){
-		this.hideNav(this.desktopNav);
-		this.displayNav(this.mobileNav);
-	}
-	else{
-		this.hideNav(this.mobileNav);
-		this.displayNav(this.desktopNav);
-	}
-};
 
 function initApp(){
 	var navbar = new Navbar("nav-desk","nav-mobile","close-nav","mobile-options");
