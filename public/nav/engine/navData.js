@@ -65,7 +65,7 @@ const navData = {
 			"About":"/about",
 			"Contact":"/contact",
 			"Test":"/",
-			"Test2":"ign.com"
+			"Test2":"https://ca.ign.com/"
 		}	
 	},
 	jsData:{

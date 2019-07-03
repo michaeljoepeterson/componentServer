@@ -10,7 +10,6 @@ function Navbar(desktopNavId,mobileNavId,mobileCloseId,mobileOptionsId){
 	this.scrollAnimation = false;
 	this.scrolled = false;
 	this.initEventListeners();
-	//this.checkWindowSize(window.innerWidth);
 }
 
 Navbar.prototype.initEventListeners = function() {
@@ -84,18 +83,6 @@ Navbar.prototype.closeClicked = function(event) {
 	navClose.classList.toggle("change");
 	this.mobileOptions.classList.toggle("hideWidth");
 	document.body.classList.toggle("no-scroll");
-};
-
-Navbar.prototype.checkWindowSize = function(windowWidth) {
-	console.log(this.desktopNav,this.mobileNav);
-	if(windowWidth <= 550){
-		this.hideNav(this.desktopNav);
-		this.displayNav(this.mobileNav);
-	}
-	else{
-		this.hideNav(this.mobileNav);
-		this.displayNav(this.desktopNav);
-	}
 };
 
 function initApp(){
